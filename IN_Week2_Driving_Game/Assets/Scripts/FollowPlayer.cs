@@ -8,7 +8,7 @@ public class FollowPlayer : MonoBehaviour
     public GameObject player;
     
     //private reference to camera position in scene
-    private Vector3 thirdPersonCameraOffset = new Vector3(0, 5, -7);
+    public Vector3 thirdPersonCameraOffset = new Vector3(0, 5, -7);
 
     //public reference to FPScamera so Unity can access it
 

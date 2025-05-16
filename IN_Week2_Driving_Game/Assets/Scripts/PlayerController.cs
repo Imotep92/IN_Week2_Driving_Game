@@ -2,36 +2,33 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    //setting the 'speed' field to to a speed of '6'
-    public float speed = 6;
-
+    private float speed = 50.0f;
+    private float turnSpeed = 70.0f;
+    private float horizontalInput;
+    private float forwardInput;
     Rigidbody rb;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int playerIndex; //assigns each player with a control scheme mapped by either 1 or 2
+
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        
+        rb = GetComponent<Rigidbody>();  
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        // move the 'Pickup_Truck_Player' forward
 
-        // method 1, transform.Translate(0,0, speed * Time.deltaTime * 20);
+        forwardInput = Input.GetAxis("Vertical" + playerIndex); //
+        horizontalInput = Input.GetAxis("Horizontal" + playerIndex);
 
-        // method 2, transform.Translate(Vector3.forward * Time.deltaTime * 20);
-
-        // method 3, move forward in world space. eg. rb.AddForce(Vector3.forward * speed);
-
-        // method 4  rb.AddRelativeForce(Vector3.forward * speed);
         
-        rb.AddRelativeForce(Vector3.forward * speed);
 
+        // Moves the car base on Vertical Input
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+        // Moves the car based on horizontal Input
+        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
 
-        // add extra code setting if player car collides with NPC car, "you lose" will atcivate
-
-       
     }
 }
